@@ -23,7 +23,7 @@ public class DetailActivity extends AppCompatActivity {
     private TextView descriptionTx;
     private TextView ingredientTx;
     private TextView alsoKnownTx;
-    private TextView alsoKnownLabel;
+    private TextView alsoKnownLabelTx;
 
 
 
@@ -39,7 +39,7 @@ public class DetailActivity extends AppCompatActivity {
         descriptionTx = findViewById(R.id.description_tv);
         ingredientTx = findViewById(R.id.ingredients_tv);
         alsoKnownTx = findViewById(R.id.also_known_tv);
-        alsoKnownLabel = findViewById(R.id.alsoKnownAs_label);
+        alsoKnownLabelTx = findViewById(R.id.alsoKnownAs_label);
 
         Intent intent = getIntent();
         if (intent == null) {
@@ -82,7 +82,7 @@ public class DetailActivity extends AppCompatActivity {
             alsoKnownTx.setText(stringBuilder.toString());
         } else {
             alsoKnownTx.setVisibility(View.GONE);
-            alsoKnownLabel.setVisibility(View.GONE);
+            alsoKnownLabelTx.setVisibility(View.GONE);
         }
 
 
@@ -97,11 +97,14 @@ public class DetailActivity extends AppCompatActivity {
 
         if (sandwich.getIngredients() != null && sandwich.getIngredients().size() > 0) {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(sandwich.getIngredients().get(0));
 
-            for (int i = 1; i < sandwich.getIngredients().size(); i++) {
+            for (int i = 0; i < sandwich.getIngredients().size(); i++) {
+
                 stringBuilder.append("\n");
+                stringBuilder.append("\u2043"+" ");
                 stringBuilder.append(sandwich.getIngredients().get(i));
+
+
             }
             ingredientTx.setText(stringBuilder.toString());
         }
