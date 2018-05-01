@@ -13,6 +13,8 @@ import com.squareup.picasso.Target;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
+import static java.lang.System.load;
+
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
@@ -76,8 +78,8 @@ public class DetailActivity extends AppCompatActivity {
             stringBuilder.append(sandwich.getAlsoKnownAs().get(0));
 
             for (int i = 1; i < sandwich.getAlsoKnownAs().size(); i++) {
-                stringBuilder.append(", ");
-                stringBuilder.append(sandwich.getAlsoKnownAs().get(i));
+                //stringBuilder.append(", ");
+                stringBuilder.append(sandwich.getAlsoKnownAs().get(i)).append(", ");
             }
             alsoKnownTx.setText(stringBuilder.toString());
         } else {
@@ -109,8 +111,12 @@ public class DetailActivity extends AppCompatActivity {
             ingredientTx.setText(stringBuilder.toString());
         }
         Picasso.with(this)
+
                 .load(sandwich.getImage())
-                .into(sandwichImagen);
+                .placeholder(R.mipmap.ic_launcher)
+                .into(sandwichImagen)
+        ;
+
 
     }
 }
